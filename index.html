@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wardrobe QR | W-001</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--ink:#17202a;--muted:#667085;--blue:#155eef;--line:#e5e7eb;--gold:#c58b35}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:var(--ink)}
+header{background:#172b4d;color:white;padding:18px 16px}header small{opacity:.8}header h1{font-size:21px;margin:7px 0}
+main{max-width:900px;margin:18px auto;padding:0 14px;display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 8px #1018280a}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pill{background:#eef4ff;color:#1849a9;padding:6px 10px;border-radius:20px;font-size:12px}
+h2{font-size:18px;margin:0 0 12px}.muted{color:var(--muted);font-size:13px;line-height:1.7}
+svg{width:100%;height:auto;display:block;background:#fafafa;border-radius:12px}
+.part{cursor:pointer;stroke:#4b5563;stroke-width:2;fill:#b78b62;transition:.15s}
+.part:hover,.part.active{fill:#f4b942;stroke:#b45309;stroke-width:4}
+.part.back{fill:#d9c2a5}
+.dim{font-size:13px;fill:#344054}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;font-weight:bold;cursor:pointer}
+button.active{background:#155eef;color:#fff;border-color:#155eef}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:#f8fafc;border:1px solid var(--line);padding:10px;border-radius:10px}
+.stat small{display:block;color:var(--muted);margin-bottom:5px}
+.notice{background:#fffaeb;border:1px solid #fedf89;border-radius:12px;padding:12px;color:#7a2e0e;font-size:13px;line-height:1.7}
+@media(max-width:560px){.stats{grid-template-columns:1fr 1fr}header h1{font-size:18px}}
+</style>
+</head>
+<body>
+<header><small>WARDROBE QR SYSTEM · نموذج تجريبي</small><h1>بيانات الوحدة W-001</h1><div>امسح كود القطعة لعرض مكانها ومعلوماتها</div></header>
+<main>
+<section class="card">
+ <div class="row"><h2>رسمة الوحدة ومكان القطعة</h2><span class="pill" id="currentCode">W-001-P-001</span></div>
+ <svg viewBox="0 0 760 430" role="img" aria-label="رسم توضيحي لوحدة دولاب بفتحتين وفاصل أوسط">
+  <defs><linearGradient id="wood" x2="0" y2="1"><stop stop-color="#d5b18b"/><stop offset="1" stop-color="#9a704d"/></linearGradient></defs>
+  <!-- cabinet front perspective -->
+  <polygon points="95,88 640,88 690,125 145,125" fill="#e5c7a5" stroke="#76583f" stroke-width="2"/>
+  <polygon points="640,88 690,125 690,342 640,305" fill="#8d6648" stroke="#76583f" stroke-width="2"/>
+  <polygon points="95,88 145,125 145,342 95,305" fill="#8d6648" stroke="#76583f" stroke-width="2"/>
+  <rect x="145" y="125" width="495" height="180" fill="#5f4633" stroke="#76583f" stroke-width="2"/>
+  <rect id="p001" class="part" x="145" y="125" width="25" height="180" onclick="selectPart('W-001-P-001')"/>
+  <rect id="p002" class="part" x="615" y="125" width="25" height="180" onclick="selectPart('W-001-P-002')"/>
+  <rect id="p003" class="part" x="145" y="125" width="495" height="24" onclick="selectPart('W-001-P-003')"/>
+  <rect id="p004" class="part" x="145" y="281" width="495" height="24" onclick="selectPart('W-001-P-004')"/>
+  <rect id="p005" class="part" x="380" y="149" width="24" height="132" onclick="selectPart('W-001-P-005')"/>
+  <text x="250" y="215" fill="#f9e8d4" font-size="20" text-anchor="middle">فتحة يسار</text>
+  <text x="510" y="215" fill="#f9e8d4" font-size="20" text-anchor="middle">فتحة يمين</text>
+  <path d="M145 355 L640 355" stroke="#344054" stroke-width="1.5"/><path d="M145 348 L145 362 M640 348 L640 362" stroke="#344054" stroke-width="1.5"/>
+  <text x="392" y="380" class="dim" text-anchor="middle">العرض الكلي: 120 سم</text>
+  <path d="M72 125 L72 305 M65 125 L79 125 M65 305 L79 305" stroke="#344054" stroke-width="1.5"/>
+  <text x="52" y="220" class="dim" text-anchor="middle" transform="rotate(-90 52 220)">الارتفاع: 80 سم</text>
+  <text x="675" y="390" class="dim" text-anchor="middle">العمق: 80 سم</text>
+ </svg>
+ <p class="muted">اضغط على أي جزء في الرسم أو اختر رقمه لمعرفة مكانه. الرسم تخطيطي أمامي/منظوري وليس رسمة تصنيع بمقياس رسم.</p>
+ <div class="btns" id="partButtons"></div>
+</section>
+<section class="card">
+ <div class="row"><h2 id="partName">الجنب الشمال</h2><span class="pill" id="partId">W-001-P-001</span></div>
+ <p id="partPlace" class="muted">الطرف الأيسر من الوحدة</p>
+ <div class="stats">
+  <div class="stat"><small>الطول</small><b id="partLength">بانتظار المقاس</b></div>
+  <div class="stat"><small>العرض</small><b id="partWidth">بانتظار المقاس</b></div>
+  <div class="stat"><small>السمك</small><b id="partThickness">18 مم</b></div>
+ </div>
+</section>
+<section class="card">
+ <h2>الأبعاد الكلية للوحدة</h2>
+ <div class="stats">
+  <div class="stat"><small>العرض</small><b>120 سم</b></div>
+  <div class="stat"><small>الارتفاع</small><b>80 سم</b></div>
+  <div class="stat"><small>العمق</small><b>80 سم</b></div>
+ </div>
+</section>
+<div class="notice"><b>ملاحظة اعتماد:</b> هذا نموذج عرض أولي. الأبعاد الكلية مدخلة حسب البيانات المرسلة، لكن مقاسات الألواح الفردية وعدد القطع النهائي يحتاجان تأكيدًا من رسمة التصنيع. لعمل QR يفتح هذه الصفحة من أي موبايل، يجب رفع الصفحة على استضافة برابط عام؛ بعدها نصدر الأكواد النهائية على هذا الرابط.</div>
+</main>
+<script>
+const parts = [
+{id:"W-001-P-001",name:"الجنب الشمال",place:"طرف الوحدة من الشمال",length:"بانتظار المقاس",width:"بانتظار المقاس",thickness:"18 مم",shape:"p001"},
+{id:"W-001-P-002",name:"الجنب اليمين",place:"طرف الوحدة من اليمين",length:"بانتظار المقاس",width:"بانتظار المقاس",thickness:"18 مم",shape:"p002"},
+{id:"W-001-P-003",name:"السقف",place:"اللوح الأفقي العلوي",length:"بانتظار المقاس",width:"بانتظار المقاس",thickness:"18 مم",shape:"p003"},
+{id:"W-001-P-004",name:"القاعدة",place:"اللوح الأفقي السفلي",length:"بانتظار المقاس",width:"بانتظار المقاس",thickness:"18 مم",shape:"p004"},
+{id:"W-001-P-005",name:"الفاصل الأوسط",place:"الفاصل الرأسي في منتصف الوحدة",length:"بانتظار المقاس",width:"بانتظار المقاس",thickness:"18 مم",shape:"p005"}
+];
+function selectPart(id){
+ const p=parts.find(x=>x.id===id)||parts[0];
+ document.querySelectorAll(".part").forEach(x=>x.classList.remove("active"));
+ document.getElementById(p.shape).classList.add("active");
+ document.getElementById("currentCode").textContent=p.id;
+ document.getElementById("partId").textContent=p.id;
+ document.getElementById("partName").textContent=p.name;
+ document.getElementById("partPlace").textContent="مكان التركيب: "+p.place;
+ document.getElementById("partLength").textContent=p.length;
+ document.getElementById("partWidth").textContent=p.width;
+ document.getElementById("partThickness").textContent=p.thickness;
+ document.querySelectorAll("button[data-id]").forEach(b=>b.classList.toggle("active",b.dataset.id===id));
+}
+const wrap=document.getElementById("partButtons");
+parts.forEach(p=>{const b=document.createElement("button");b.textContent=p.id.split("-").pop()+" · "+p.name;b.dataset.id=p.id;b.onclick=()=>selectPart(p.id);wrap.appendChild(b)});
+const params=new URLSearchParams(location.search);selectPart(params.get("part")||"W-001-P-001");
+</script>
+</body></html>
